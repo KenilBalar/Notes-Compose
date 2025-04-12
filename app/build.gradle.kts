@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+//    alias(libs.plugins.ksp)
+    alias(libs.plugins.parcelize)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -13,7 +16,7 @@ android {
         minSdk = 24
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,4 +56,10 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    /********************************************ROOM Library*/
+//    ksp(libs.androidx.room.compiler)
+    implementation(libs.bundles.room)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
 }

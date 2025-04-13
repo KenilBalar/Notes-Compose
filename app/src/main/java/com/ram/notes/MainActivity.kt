@@ -11,37 +11,28 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
+import com.ram.notes.database.NoteDatabase
+import com.ram.notes.repository.NoteRepository
 import com.ram.notes.ui.theme.NotesComposeTheme
+import com.ram.notes.viewModelFactory.NoteViewModelFactory
+import com.ram.notes.viewModels.NoteViewModel
+import com.ram.notes.views.NoteApp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        val database = NoteDatabase.getDatabase(this)
+        val repository = NoteRepository(database.noteDao())
+        val viewModelFactory = NoteViewModelFactory(repository)
+        val viewModel = ViewModelProvider(this, viewModelFactory)[NoteViewModel::class.java]
+
         setContent {
             NotesComposeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                    NoteApp(viewModel)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NotesComposeTheme {
-        Greeting("Android")
     }
 }

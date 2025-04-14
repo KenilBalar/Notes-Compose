@@ -1,6 +1,6 @@
 # 🗒️ Notes App
 
-A simple Notes app built using modern Android development practices with Jetpack Compose and Kotlin. It allows users to add and delete notes with a clean UI and structured architecture.
+A simple Notes app built using modern Android development practices with Jetpack Compose and Kotlin. Users can add, edit, and delete notes with a clean UI and structured architecture.
 
 ### 🛠 Tech Stack Used
 - Jetpack Compose for UI

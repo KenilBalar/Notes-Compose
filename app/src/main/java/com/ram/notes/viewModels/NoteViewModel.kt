@@ -3,7 +3,7 @@ package com.ram.notes.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.ram.notes.database.entity.Note
+import com.ram.notes.data.database.entity.Note
 import com.ram.notes.repository.NoteRepository
 import kotlinx.coroutines.launch
 

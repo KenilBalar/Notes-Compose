@@ -1,11 +1,11 @@
-package com.ram.notes.database.dao
+package com.ram.notes.data.database.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.ram.notes.database.entity.Note
+import com.ram.notes.data.database.entity.Note
 import kotlinx.coroutines.flow.Flow
 
 /**

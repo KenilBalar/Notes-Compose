@@ -1,4 +1,4 @@
-package com.ram.notes.navigation
+package com.ram.notes.ui.navigation
 
 /**
  * @author ASUS

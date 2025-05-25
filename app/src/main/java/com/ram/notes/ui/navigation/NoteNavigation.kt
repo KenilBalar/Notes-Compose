@@ -1,13 +1,13 @@
-package com.ram.notes.navigation
+package com.ram.notes.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.ram.notes.database.entity.Note
+import com.ram.notes.data.database.entity.Note
 import com.ram.notes.viewModels.NoteViewModel
-import com.ram.notes.views.AddEditNoteScreen
-import com.ram.notes.views.HomeScreen
+import com.ram.notes.ui.screens.AddEditNoteScreen
+import com.ram.notes.ui.screens.HomeScreen
 
 /**
  * @author ASUS

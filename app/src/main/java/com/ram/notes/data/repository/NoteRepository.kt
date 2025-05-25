@@ -1,7 +1,7 @@
 package com.ram.notes.repository
 
-import com.ram.notes.database.dao.NoteDao
-import com.ram.notes.database.entity.Note
+import com.ram.notes.data.database.dao.NoteDao
+import com.ram.notes.data.database.entity.Note
 import kotlinx.coroutines.flow.Flow
 
 /**

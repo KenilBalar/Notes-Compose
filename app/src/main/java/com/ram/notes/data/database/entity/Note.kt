@@ -1,4 +1,4 @@
-package com.ram.notes.database.entity
+package com.ram.notes.data.database.entity
 
 import android.os.Parcelable
 import androidx.room.Entity

@@ -1,11 +1,11 @@
-package com.ram.notes.database
+package com.ram.notes.data.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.ram.notes.database.dao.NoteDao
-import com.ram.notes.database.entity.Note
+import com.ram.notes.data.database.dao.NoteDao
+import com.ram.notes.data.database.entity.Note
 
 /**
  * @author ASUS

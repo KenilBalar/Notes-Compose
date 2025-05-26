@@ -1,6 +1,5 @@
 package com.ram.notes.ui.screens
 
-import android.content.res.Resources.Theme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -10,10 +9,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -28,84 +28,56 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.ram.notes.data.database.entity.Note
-import com.ram.notes.ui.theme.getBlueColor
-import com.ram.notes.ui.theme.getGreenColor
-import com.ram.notes.ui.theme.getPurpleColor
-import com.ram.notes.ui.theme.getRedColor
-import com.ram.notes.ui.theme.getYellowColor
 import com.ram.notes.utils.getColorFromName
 
 /**
  * @author ASUS
  * @date 12-04-2025
  */
-
 @Composable
 fun NoteItem(note: Note, onEdit: (Note) -> Unit, onDelete: (Note) -> Unit) {
+    noteUI(note, onEdit, onDelete)
+}
+
+@Preview(showBackground = true)
+@Composable
+fun notePreview() {
+    noteUI(Note(0,"Android Concepts","Kotlin Flows\nCoroutines\nMVVM Architecture\nJetpack Compose\nRxJava/RxKotlin\nRetrofit\nFirebase\nUnit Tests ","Blue"))
+}
+
+@Composable
+fun noteUI(note: Note, onEdit: (Note) -> Unit = {}, onDelete: (Note) -> Unit = {}){
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(10.dp)
+            .padding(start = 12.dp, end = 12.dp, top = 4.dp, bottom = 4.dp)
             .clickable {
-                    onEdit (note)
+                onEdit(note)
             },
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(
             containerColor = getColorFromName(note.color)
         )
     ) {
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp)
+                .padding(16.dp)
         ) {
 
             Row(modifier = Modifier.padding(bottom = 8.dp)) {
-                Text(text = note.title, fontSize = TextUnit(18f, TextUnitType.Sp), fontWeight = FontWeight.Bold,modifier = Modifier.weight(1f))
-
+                Text(text = note.title, fontSize = TextUnit(18f, TextUnitType.Sp), fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
                 Spacer(modifier = Modifier.size(12.dp))
-                IconButton(modifier = Modifier.size(20.dp),onClick = { onDelete(note) }) {
-                    Icon(Icons.Default.Delete, contentDescription = "Delete")
+                Card(colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.onBackground.copy(0.1f)), shape = CircleShape) {
+                    IconButton(modifier = Modifier.size(28.dp).padding(4.dp), onClick = { onDelete(note) }) {
+                        Icon(Icons.Default.Delete, contentDescription = "Delete",
+                                tint = MaterialTheme.colorScheme.onBackground)
+                    }
                 }
             }
-            Spacer(modifier = Modifier.height(1.dp).fillMaxWidth().background(Color.Black.copy(alpha = 0.2f)))
-            Column(modifier = Modifier.padding(top = 8.dp)) {
-                Text(text = note.content, fontSize = TextUnit(14f, TextUnitType.Sp))
-            }
-        }
-    }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun notePreview(){
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(6.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.background
-        )
-    ) {
-        Column (
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp)
-        ) {
-
-            Row(modifier = Modifier.padding(bottom = 8.dp)) {
-                Text(text = "Title", fontSize = TextUnit(18f, TextUnitType.Sp), fontWeight = FontWeight.Bold,modifier = Modifier.weight(1f))
-
-                Spacer(modifier = Modifier.size(12.dp))
-                IconButton(modifier = Modifier.size(20.dp),onClick = {  }) {
-                    Icon(Icons.Default.Delete, contentDescription = "Delete")
-                }
-            }
-            Spacer(modifier = Modifier.height(1.dp).fillMaxWidth().background(Color.Black.copy(alpha = 0.2f)))
-            Column(modifier = Modifier.padding(top = 8.dp)) {
-                Text(text = "This is Description", fontSize = TextUnit(14f, TextUnitType.Sp))
+            Column(modifier = Modifier.fillMaxWidth().padding(top = 4.dp)) {
+                Text(text = note.content, fontSize = TextUnit(14f, TextUnitType.Sp), modifier = Modifier.fillMaxWidth())
             }
         }
     }

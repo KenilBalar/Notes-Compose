@@ -13,6 +13,7 @@ import androidx.compose.runtime.setValue
 import com.ram.notes.data.database.entity.Note
 import com.ram.notes.ui.layout.BottomSheetUI
 import com.ram.notes.ui.layout.HomeUI
+import com.ram.notes.ui.theme.getSurfaceColor
 import com.ram.notes.viewModels.NoteViewModel
 
 /**
@@ -50,7 +51,7 @@ fun EditNoteBottomSheet(
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         sheetState = bottomSheetState,
-        containerColor = MaterialTheme.colorScheme.background,
+        containerColor = getSurfaceColor(),
     ) {
 
         BottomSheetUI(note, onUpdate = { note ->

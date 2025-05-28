@@ -12,7 +12,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +24,10 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.ram.notes.data.database.entity.Note
 import com.ram.notes.ui.components.AppTopBar
-import com.ram.notes.ui.screens.NoteItem
+import com.ram.notes.ui.screens.NoteUI
+import com.ram.notes.ui.theme.getBackgroundColor
+import com.ram.notes.ui.theme.getOnPrimaryColor
+import com.ram.notes.ui.theme.getPrimaryColor
 
 /**
  * @author ASUS
@@ -38,14 +40,14 @@ fun HomeUI(
     onDeleteNoteClick: (Note) -> Unit = {},
     onEditNoteClick: (Note) -> Unit = {}
 ) {
-    Scaffold(containerColor = MaterialTheme.colorScheme.background,
+    Scaffold(containerColor = getBackgroundColor(),
         topBar = {
             AppTopBar("Notes-Compose")
         },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { onAddNoteClick() },
-                containerColor = MaterialTheme.colorScheme.primary,
+                containerColor = getPrimaryColor(),
                 shape = RoundedCornerShape(20.dp)
             ) {
                 Row(
@@ -56,7 +58,7 @@ fun HomeUI(
                         Icons.Default.Add,
                         contentDescription = "Add Note",
                         modifier = Modifier.padding(end = 4.dp),
-                        tint = MaterialTheme.colorScheme.onPrimary
+                        tint = getOnPrimaryColor()
                     )
                     Text("Add note", fontWeight = FontWeight.Bold)
                 }
@@ -73,14 +75,14 @@ fun HomeUI(
             ) {
                 Text(
                     text = "You have not added any notes yet!\nClick \"+ Add note\" button to create your first note :)",
-                    color = MaterialTheme.colorScheme.primary.copy(0.6f),
+                    color = getPrimaryColor().copy(0.6f),
                     fontSize = TextUnit(14f, TextUnitType.Sp)
                 )
             }
         } else {
             LazyColumn(contentPadding = padding) {
                 items(notes) { note ->
-                    NoteItem(
+                    NoteUI(
                         note = note,
                         onEdit = { onEditNoteClick(it) },
                         onDelete = { onDeleteNoteClick(it) }

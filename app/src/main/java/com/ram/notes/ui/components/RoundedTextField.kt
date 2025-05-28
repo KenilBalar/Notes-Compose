@@ -4,11 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ram.notes.ui.theme.getSurfaceColor
 import androidx.compose.material3.OutlinedTextField as OutlinedTextField1
 
 /**
@@ -19,16 +21,26 @@ import androidx.compose.material3.OutlinedTextField as OutlinedTextField1
 fun RoundedTextField(
     value: String,
     onValueChange: (String) -> Unit,
-    label: String,
-    modifier: Modifier = Modifier
+    placeHolder: String
 ) {
+    TextFieldUI(value = value, onValueChange = onValueChange, placeHolder = placeHolder)
+}
+
+@Composable
+fun TextFieldUI(value: String, onValueChange: (String) -> Unit = {}, placeHolder: String) {
     OutlinedTextField1(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(label) },
-        modifier = modifier
+        placeholder = { Text(placeHolder) },
+        modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(12.dp)),
-        shape = RoundedCornerShape(12.dp)
+            .background(getSurfaceColor(), RoundedCornerShape(12.dp)),
+        shape = RoundedCornerShape(12.dp),
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewTextField() {
+    TextFieldUI("", placeHolder = "Title")
 }

@@ -28,6 +28,9 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.ram.notes.data.database.entity.Note
+import com.ram.notes.ui.components.CardView
+import com.ram.notes.ui.components.SpaceHorizontal
+import com.ram.notes.ui.theme.getOnBackgroundColor
 import com.ram.notes.utils.getColorFromName
 
 /**
@@ -35,18 +38,7 @@ import com.ram.notes.utils.getColorFromName
  * @date 12-04-2025
  */
 @Composable
-fun NoteItem(note: Note, onEdit: (Note) -> Unit, onDelete: (Note) -> Unit) {
-    noteUI(note, onEdit, onDelete)
-}
-
-@Preview(showBackground = true)
-@Composable
-fun notePreview() {
-    noteUI(Note(0,"Android Concepts","Kotlin Flows\nCoroutines\nMVVM Architecture\nJetpack Compose\nRxJava/RxKotlin\nRetrofit\nFirebase\nUnit Tests ","Blue"))
-}
-
-@Composable
-fun noteUI(note: Note, onEdit: (Note) -> Unit = {}, onDelete: (Note) -> Unit = {}){
+fun NoteUI(note: Note, onEdit: (Note) -> Unit = {}, onDelete: (Note) -> Unit = {}){
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -67,14 +59,12 @@ fun noteUI(note: Note, onEdit: (Note) -> Unit = {}, onDelete: (Note) -> Unit = {
 
             Row {
                 Text(text = note.title, fontSize = TextUnit(18f, TextUnitType.Sp), fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                Spacer(modifier = Modifier.size(12.dp))
-                Card(colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.onBackground.copy(0.1f)), shape = CircleShape) {
-                    IconButton(modifier = Modifier
-                        .size(28.dp)
-                        .padding(4.dp), onClick = { onDelete(note) }) {
+                SpaceHorizontal(12)
+
+                CardView{
+                    IconButton(modifier = Modifier.size(28.dp).padding(4.dp), onClick = { onDelete(note) }) {
                         Icon(Icons.Default.Delete, contentDescription = "Delete",
-                                tint = MaterialTheme.colorScheme.onBackground)
+                                tint = getOnBackgroundColor())
                     }
                 }
             }
@@ -87,4 +77,10 @@ fun noteUI(note: Note, onEdit: (Note) -> Unit = {}, onDelete: (Note) -> Unit = {
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun NotePreview() {
+    NoteUI(Note(0,"Android Concepts","Kotlin Flows\nCoroutines\nMVVM Architecture\nJetpack Compose\nRxJava/RxKotlin\nRetrofit\nFirebase\nUnit Tests ","Blue"))
 }

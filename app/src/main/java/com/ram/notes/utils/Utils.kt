@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.ram.notes.ui.theme.getBackgroundColor
 import com.ram.notes.ui.theme.getBlueColor
 import com.ram.notes.ui.theme.getGreenColor
 import com.ram.notes.ui.theme.getPurpleColor
@@ -23,6 +24,7 @@ fun getColorFromName(name: String = ""): Color{
         "Blue" -> getBlueColor()
         "Yellow" -> getYellowColor()
         "Purple" -> getPurpleColor()
-        else -> MaterialTheme.colorScheme.background
+        else -> getBackgroundColor()
     }
 }
+

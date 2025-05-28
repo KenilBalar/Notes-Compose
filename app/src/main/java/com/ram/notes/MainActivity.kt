@@ -15,6 +15,7 @@ import com.ram.notes.data.database.NoteDatabase
 import com.ram.notes.ui.navigation.NoteNavigation
 import com.ram.notes.repository.NoteRepository
 import com.ram.notes.ui.theme.NotesComposeTheme
+import com.ram.notes.ui.theme.getBackgroundColor
 import com.ram.notes.viewModelFactory.NoteViewModelFactory
 import com.ram.notes.viewModels.NoteViewModel
 
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             NotesComposeTheme {
-                Surface(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
+                Surface(modifier = Modifier.fillMaxSize().background(getBackgroundColor())) {
                     NoteNavigation(viewModel)
                 }
             }

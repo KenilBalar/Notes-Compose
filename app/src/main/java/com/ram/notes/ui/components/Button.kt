@@ -13,6 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ram.notes.ui.theme.getOnPrimaryColor
+import com.ram.notes.ui.theme.getPrimaryColor
+import com.ram.notes.ui.theme.getSurfaceColor
 
 /**
  * @author ASUS
@@ -21,6 +24,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun AppButton(
+    modifier: Modifier = Modifier,
     text: String,
     isPositive: Boolean = true,
     onClick:  () -> Unit
@@ -28,22 +32,23 @@ fun AppButton(
     if (isPositive){
 
         Button(
+            modifier = modifier,
             onClick = onClick,
-            shape = RoundedCornerShape(16.dp), // Rounded corners
             colors = ButtonDefaults.buttonColors(
-                containerColor =MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary
+                containerColor =getPrimaryColor(),
+                contentColor = getOnPrimaryColor()
             )
         ) {
             Text(text = text)
         }
     }
     else{
-        TextButton (
+        Button (
+            modifier = modifier,
             onClick = onClick,
             colors = ButtonDefaults.buttonColors(
-            containerColor =MaterialTheme.colorScheme.background,
-            contentColor = MaterialTheme.colorScheme.onBackground
+            containerColor =getPrimaryColor().copy(0.1f),
+            contentColor = getPrimaryColor()
         )) { Text(text) }
     }
 
@@ -57,8 +62,8 @@ fun PreviewButton(){
         modifier = Modifier,
         shape = RoundedCornerShape(24.dp), // Rounded corners
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary
+            containerColor = getSurfaceColor(),
+            contentColor = getPrimaryColor()
         )
     ) {
         Text("Click me")

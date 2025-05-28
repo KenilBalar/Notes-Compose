@@ -8,6 +8,8 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import com.ram.notes.ui.theme.getBackgroundColor
+import com.ram.notes.ui.theme.getOnBackgroundColor
 
 /**
  * @author ASUS
@@ -30,7 +32,7 @@ fun PreviewTopBar(){
 fun TopBarUI(title: String){
     TopAppBar(title = { Text(title, fontWeight = FontWeight.Bold) },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.background,
-            titleContentColor = MaterialTheme.colorScheme.onBackground
+            containerColor = getBackgroundColor(),
+            titleContentColor = getOnBackgroundColor()
         ))
 }

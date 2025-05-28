@@ -12,7 +12,7 @@ val LightSecondaryColor = Color(0xFF4C3E88)
 val LightOnSecondaryColor = Color(0xFFFFFFFF)
 
 val LightBackgroundColor = Color(0xFFFFFFFF)
-val LightSurfaceColor = Color(0xFFE3E3E3)
+val LightSurfaceColor = Color(0xFFECECEC)
 val LightOnBackgroundColor = Color(0xFF000000)
 val LightOnSurfaceColor = Color(0xFF1A1A1A)
 
@@ -30,7 +30,7 @@ val DarkSecondaryColor = Color(0xFF9EC98E)
 val DarkOnSecondaryColor = Color(0xFF000000)
 
 val DarkBackgroundColor = Color(0xFF000000)
-val DarkSurfaceColor = Color(0xFF282828)
+val DarkSurfaceColor = Color(0xFF181818)
 val DarkOnBackgroundColor = Color(0xFFFFFFFF)
 val DarkOnSurfaceColor = Color(0xFFF5F5F5)
 

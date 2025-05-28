@@ -23,14 +23,12 @@ import androidx.compose.ui.unit.dp
 fun AppButton(
     text: String,
     isPositive: Boolean = true,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    onClick:  () -> Unit
 ) {
     if (isPositive){
 
         Button(
             onClick = onClick,
-            modifier = modifier,
             shape = RoundedCornerShape(16.dp), // Rounded corners
             colors = ButtonDefaults.buttonColors(
                 containerColor =MaterialTheme.colorScheme.primary,

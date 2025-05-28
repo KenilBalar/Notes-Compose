@@ -65,19 +65,25 @@ fun noteUI(note: Note, onEdit: (Note) -> Unit = {}, onDelete: (Note) -> Unit = {
                 .padding(16.dp)
         ) {
 
-            Row(modifier = Modifier.padding(bottom = 8.dp)) {
+            Row {
                 Text(text = note.title, fontSize = TextUnit(18f, TextUnitType.Sp), fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
                 Spacer(modifier = Modifier.size(12.dp))
                 Card(colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.onBackground.copy(0.1f)), shape = CircleShape) {
-                    IconButton(modifier = Modifier.size(28.dp).padding(4.dp), onClick = { onDelete(note) }) {
+                    IconButton(modifier = Modifier
+                        .size(28.dp)
+                        .padding(4.dp), onClick = { onDelete(note) }) {
                         Icon(Icons.Default.Delete, contentDescription = "Delete",
                                 tint = MaterialTheme.colorScheme.onBackground)
                     }
                 }
             }
-            Column(modifier = Modifier.fillMaxWidth().padding(top = 4.dp)) {
-                Text(text = note.content, fontSize = TextUnit(14f, TextUnitType.Sp), modifier = Modifier.fillMaxWidth())
+            if (note.content.trim().isNotEmpty()) {
+            Column(modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 4.dp)) {
+                    Text(text = note.content, fontSize = TextUnit(14f, TextUnitType.Sp), modifier = Modifier.fillMaxWidth())
+                }
             }
         }
     }
